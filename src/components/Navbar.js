@@ -5,7 +5,7 @@ class Navbar extends React.Component{
     render(){
         return(
           <div>
-            <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+            <nav className="navbar navbar-expand-sm bg-dark navbar-dark  navbar-default">
                 
                     <Link to="/bank" className="brand-logo">
                     BrandLogo

@@ -7,6 +7,11 @@ import React from 'react';
      pageNumbers.push(i);
   
     }
+    const number =[];
+    for(let i=1;i<=5;i++){
+        number.push(i);
+    }
+        
     return(
       <nav aria-label="Page navigation example">
         <ul className="pagination">{pageNumbers.map(number=>(<li key={number} className="page-item">
