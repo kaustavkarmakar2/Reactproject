@@ -16,19 +16,10 @@ function App(state,city) {
     city: []
 
   }
-  // const city= [
-  //   {
-  //     id:1,
-      
-  //     location:"MUMBAI",
-      
-  //   },
-  //   {
-     
-  //     location:"KOLKATA",
-      
-  //   }
-  // ];
+  
+
+
+  
   const [posts,setPosts]=useState([]);
   const [loading,setLoading]=useState(false);
   const [currentPage,setCurrentPage]=useState(1);
@@ -39,24 +30,51 @@ function App(state,city) {
   //   {location:"DELHI"}
   // ]
   // console.log("beach",city[location]);
+  const handleChange =(event) => {
+    this.setState({city: event.target.value });
+    console.log(event.target.value);
+  }
+  
   useEffect(()=>{
     // let city="MUMBAI";
     // city={
 
     // }
-    let cities = posts.map(function (post) {
-      return post.city;
-      console.log("fuvk",post.city);
-    })
-    let pathvars='DELHI';
+    
+    // let pathvars='DELHI';
     // console.log("city",city)
     const fetchPosts = async ()=>{
+     
+      var city =[
+          {location:"KOLKATA"},
+          {location:"MUMBAI"},
+          {location:"DELHI"}
+        ]
+        
+      //  city.forEach(city);
+        for(let  i=0; i<city[i].length;i++)
+        var city=city[i].forEach(city);
+         if(city[0]==='KOLKATA'){
+           return city
+         }
+         if(city[1]==='MUMBAI'){
+           return city;
+         }
+         if (city[2]==='DELHI'){
+           return city;
+         }else{
+           console.log("fuckyou",city);
+         }
+         
+      let city4='DELHI';
+      console.log("hello",city);
       setLoading(true);
-      const res = await axios.get(`https://vast-shore-74260.herokuapp.com/banks?city=`+pathvars);
+       const res = await axios.get(`https://vast-shore-74260.herokuapp.com/banks?city=`+city4);
       setPosts(res.data);
       setLoading(false);
     }
     fetchPosts();
+    
   },[]);
   
   
@@ -81,7 +99,7 @@ function App(state,city) {
         <div className="main">
           <Route path="/bank" component={Home} /> 
           <Route path="/fav">
-            <Fav posts={currentPosts} loading={loading} city={city}
+            <Fav posts={currentPosts} loading={loading} city={city} useEffect={useEffect} handleChange ={handleChange }
            
             />
             <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />

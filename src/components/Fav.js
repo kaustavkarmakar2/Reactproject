@@ -1,86 +1,60 @@
 import React from 'react';
-import Select from 'react-select';
-import StarRatingComponent from 'react-star-rating-component';
-import AsyncSelect from 'react-select/async'
 
-const Posts=({posts,loading,state,city}) =>{
+import StarRatingComponent from 'react-star-rating-component';
+
+class Posts extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        city: []
+    };    
+};
+render(){
+ 
+
   
-  state = {
-    rating: 1,
-    posts:[],
-    selectedOption: [],
-    
-   
-  }
-  var city =[
+  let city =[
     {location:"KOLKATA"},
     {location:"MUMBAI"},
     {location:"DELHI"}
   ]
+  console.log("state",city);
+  // const {cityf} = state
+  // const handleChange =(event) => {
+  //   this.setState({city: event.target.value });
+  //   console.log(event.target.value);
+  // }
+  
+
+
+
+  
   const onStarClick=(nextValue, prevValue, name) =>{
     this.setState({rating: nextValue})
   }
   
-  const { rating } = state;
-  console.log("gugy",city);
-  if(loading){
+  const { rating } = this.state;
+  // console.log("gugy",city[0]);
+  if(this.loading){
    return <h2>Loading....</h2>
   }
-  let options = posts.map(function (post) {
-    return post.city;
-  })
-  console.log("options",options);
-//    const fetchData = (inputValue, callback) => {
-//     if (!inputValue) {
-      
-//      callback([]);
-//     } else {
-//         setTimeout(() => {
-//   fetch("https://vast-shore-74260.herokuapp.com/banks?city=" + inputValue, {
-//     method: "GET",
-//   })
-//   .then((resp) => {
-//     return resp.json()
-    
-//   }) 
-//   .then((data) => {
-//       const tempArray = [];
-//      data.forEach((element) => {
-//             tempArray.push({ label: `${element.city}`, value: element.city });
-//      });
-//     callback(tempArray);            
-//   })
-//   .catch((error) => {
-//     console.log(error, "catch the hoop")
-//   });
-// });
-// }
-// }
-
-
-// const onSearchChange = (selectedOption) => {
-//     if (selectedOption) {
-
-//     // this.setState({
-//     //     selectedOption
-//     //    });
-//     }
-//   };
-  // console.log("gandu",data);
+ 
   return(
    <ul className='list-group mb-2'>
    <h2>Hello</h2>
    
    <div className='col-sm-4'>
    <select  
-   value={options}
+   value={['KOLKATA','MUMBAI']} 
+   onChange={this.props.useEffect} 
                 
-   placeholder="Admin Name"
+   placeholder="Select city"
    
   //  defaultOptions={false}
   >
-   <option>Kolkata</option>
-   <option>Bangalore</option>
+   <option value="KOLKATA">Kolkata</option>
+   <option value="MUMBAI">Mumbai</option>
   
    </select>
               
@@ -97,7 +71,7 @@ const Posts=({posts,loading,state,city}) =>{
       </tr>
     </thead>
     </table>
-    {posts.map(post =>(<li key={post.id} className='list-group-item'>
+    {this.props.posts.map(post =>(<li key={post.id} className='list-group-item'>
    
            <div className='col-sm-4'>
       
@@ -122,5 +96,12 @@ const Posts=({posts,loading,state,city}) =>{
   </table></li>))}
    </ul>
   )
+
 }
+
+}
+  
+// const Posts=({posts,loading,state}) =>{
+  
+// }
 export default Posts;
